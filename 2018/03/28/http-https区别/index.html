@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>js代码判断浏览器种类 | Wonder233&#39;s Blog</title>
+  <title>http&amp;https区别 | Wonder233&#39;s Blog</title>
   <meta name="author" content="Wonder">
   
   <meta name="description" content="努力努力再努力">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="js代码判断浏览器种类"/>
+  <meta property="og:title" content="http&amp;https区别"/>
   <meta property="og:site_name" content="Wonder233&#39;s Blog"/>
 
   
@@ -45,7 +45,7 @@
   <div class="container" id="container">
 	<div class="content">
 	  <div class="page-header">		
-  <h1><a class="brand" href="/">Wonder233&#39;s Blog</a><span class="split"></span><span class="title">js代码判断浏览器种类</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2018-03-28</span></h1>
+  <h1><a class="brand" href="/">Wonder233&#39;s Blog</a><span class="split"></span><span class="title">http&amp;https区别</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2018-03-28</span></h1>
 </div>		
 
 <div class="row page">
@@ -67,25 +67,11 @@
 	
 
 	  <!-- content -->
-	  <h2 id="只区分浏览器，不考虑版本"><a href="#只区分浏览器，不考虑版本" class="headerlink" title="只区分浏览器，不考虑版本"></a>只区分浏览器，不考虑版本</h2><pre><code>var browser={
-    versions:function(){
-        var u = navigator.userAgent, 
-            app = navigator.appVersion;
-        return {
-            trident: u.indexOf(‘Trident’) &gt; -1, //IE内核
-            presto: u.indexOf(‘Presto’) &gt; -1, //opera内核
-            webKit: u.indexOf(‘AppleWebKit’) &gt; -1, //苹果、谷歌内核
-            gecko: u.indexOf(‘Gecko’) &gt; -1 &amp;&amp; u.indexOf(‘KHTML’) == -1, //火狐内核
-            mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端
-            ios: !!u.match(/(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-            android: u.indexOf(‘Android’) &gt; -1 || u.indexOf(‘Linux’) &gt; -1, //android终端或者uc浏览器
-            iPhone: u.indexOf(‘iPhone’) &gt; -1 || u.indexOf(‘Mac’) &gt; -1, //是否为iPhone或者QQHD浏览器
-            iPad: u.indexOf(‘iPad’) &gt; -1, //是否iPad
-            webApp: u.indexOf(‘Safari’) == -1 //是否web应该程序，没有头部与底部
-        };
-    }()
-}
-</code></pre>	  
+	  <h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><blockquote>
+<p>所有的 HTTP 请求和响应数据在发送到网络之前，都要进行加密。</p>
+</blockquote>
+<p>图片测试<br><img src="/2018/03/28/http-https区别/./github-sprite.png" alt="Alt text"></p>
+	  
 
 	  <div>
   		<center>
@@ -109,9 +95,9 @@
 		
 	
 		
-			
-			
-			
+	
+		
+	
 		
 	
 	
@@ -120,7 +106,7 @@
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	
-		<li class="next"><a href="/2018/03/27/LearnES5/ECMAScript数据类型/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
 	
 </ul>
 </div>

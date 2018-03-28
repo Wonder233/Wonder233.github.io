@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>华为笔试题 | Wonder233&#39;s Blog</title>
+  <title>js代码判断浏览器种类 | Wonder233&#39;s Blog</title>
   <meta name="author" content="Wonder">
   
   <meta name="description" content="努力努力再努力">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="华为笔试题"/>
+  <meta property="og:title" content="js代码判断浏览器种类"/>
   <meta property="og:site_name" content="Wonder233&#39;s Blog"/>
 
   
@@ -45,7 +45,7 @@
   <div class="container" id="container">
 	<div class="content">
 	  <div class="page-header">		
-  <h1><a class="brand" href="/">Wonder233&#39;s Blog</a><span class="split"></span><span class="title">华为笔试题</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2018-03-28</span></h1>
+  <h1><a class="brand" href="/">Wonder233&#39;s Blog</a><span class="split"></span><span class="title">js代码判断浏览器种类</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2018-03-28</span></h1>
 </div>		
 
 <div class="row page">
@@ -67,38 +67,23 @@
 	
 
 	  <!-- content -->
-	  <p>华为笔试题，前面两道题非常简单就不进行记录了。</p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入是一个整型数组，数组里的整形数可以是正数，也可以是负数。子数组指的是数组中连续的一个或多个元素的集合，求这些子数组中，求和后最大值是多少。</p>
-<p><strong>输入描述：</strong></p>
-<blockquote>
-<p>一个整型数组</p>
-</blockquote>
-<p><strong>输出描述：</strong></p>
-<blockquote>
-<p>最大连续子数组的和。</p>
-</blockquote>
-<h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><pre><code>function GreatSum(arr){
-    var sum = 0;
-    var result = 0;
-    for(var i in arr){
-        sum += arr[i];
-        if(sum &lt; 0){
-            sum = 0;
-        }
-        if(sum &gt; result){
-            result = sum;
-        }
-        if(result == 0){
-            for(var j in arr){
-                if(result == 0){
-                    result = arr[j];
-                } else if (result &lt; arr[j]){
-                    result = arr[j];
-                }
-            }
-        }
-    }
-    return result;
+	  <h2 id="只区分浏览器，不考虑版本"><a href="#只区分浏览器，不考虑版本" class="headerlink" title="只区分浏览器，不考虑版本"></a>只区分浏览器，不考虑版本</h2><pre><code>var browser={
+    versions:function(){
+        var u = navigator.userAgent, 
+            app = navigator.appVersion;
+        return {
+            trident: u.indexOf(‘Trident’) &gt; -1, //IE内核
+            presto: u.indexOf(‘Presto’) &gt; -1, //opera内核
+            webKit: u.indexOf(‘AppleWebKit’) &gt; -1, //苹果、谷歌内核
+            gecko: u.indexOf(‘Gecko’) &gt; -1 &amp;&amp; u.indexOf(‘KHTML’) == -1, //火狐内核
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端
+            ios: !!u.match(/(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf(‘Android’) &gt; -1 || u.indexOf(‘Linux’) &gt; -1, //android终端或者uc浏览器
+            iPhone: u.indexOf(‘iPhone’) &gt; -1 || u.indexOf(‘Mac’) &gt; -1, //是否为iPhone或者QQHD浏览器
+            iPad: u.indexOf(‘iPad’) &gt; -1, //是否iPad
+            webApp: u.indexOf(‘Safari’) == -1 //是否web应该程序，没有头部与底部
+        };
+    }()
 }
 </code></pre>	  
 
@@ -115,8 +100,6 @@
 		
 	
 		
-	
-		
 			
 			
 		
@@ -127,6 +110,10 @@
 	
 		
 	
+		
+			
+			
+			
 		
 	
 	
@@ -135,7 +122,7 @@
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	
-		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+		<li class="next"><a href="/2018/03/27/LearnES5/ECMAScript数据类型/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
 	
 </ul>
 </div>
