@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>华为笔试题</title>
+      <link href="/2018/03/28/%E5%8D%8E%E4%B8%BA%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+      <url>/2018/03/28/%E5%8D%8E%E4%B8%BA%E7%AC%94%E8%AF%95%E9%A2%98/</url>
+      <content type="html"><![CDATA[<p>华为笔试题，前面两道题非常简单就不进行记录了。</p><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入是一个整型数组，数组里的整形数可以是正数，也可以是负数。子数组指的是数组中连续的一个或多个元素的集合，求这些子数组中，求和后最大值是多少。</p><p><strong>输入描述：</strong></p><blockquote><p>一个整型数组</p></blockquote><p><strong>输出描述：</strong></p><blockquote><p>最大连续子数组的和。</p></blockquote><h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><pre><code>function GreatSum(arr){    var sum = 0;    var result = 0;    for(var i in arr){        sum += arr[i];        if(sum &lt; 0){            sum = 0;        }        if(sum &gt; result){            result = sum;        }        if(result == 0){            for(var j in arr){                if(result == 0){                    result = arr[j];                } else if (result &lt; arr[j]){                    result = arr[j];                }            }        }    }    return result;}</code></pre>]]></content>
+      
+      <categories>
+          
+          <category> 编程题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>网易互娱一面</title>
       <link href="/2018/03/28/%E7%94%9F%E6%B4%BB/%E7%BD%91%E6%98%93%E4%BA%92%E5%A8%B1%E4%B8%80%E9%9D%A2/"/>
       <url>/2018/03/28/%E7%94%9F%E6%B4%BB/%E7%BD%91%E6%98%93%E4%BA%92%E5%A8%B1%E4%B8%80%E9%9D%A2/</url>

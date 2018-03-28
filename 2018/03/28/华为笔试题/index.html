@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>网易互娱一面 | Wonder233&#39;s Blog</title>
+  <title>华为笔试题 | Wonder233&#39;s Blog</title>
   <meta name="author" content="Wonder">
   
   <meta name="description" content="努力努力再努力">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="网易互娱一面"/>
+  <meta property="og:title" content="华为笔试题"/>
   <meta property="og:site_name" content="Wonder233&#39;s Blog"/>
 
   
@@ -45,7 +45,7 @@
   <div class="container" id="container">
 	<div class="content">
 	  <div class="page-header">		
-  <h1><a class="brand" href="/">Wonder233&#39;s Blog</a><span class="split"></span><span class="title">网易互娱一面</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2018-03-28</span></h1>
+  <h1><a class="brand" href="/">Wonder233&#39;s Blog</a><span class="split"></span><span class="title">华为笔试题</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2018-03-28</span></h1>
 </div>		
 
 <div class="row page">
@@ -67,14 +67,40 @@
 	
 
 	  <!-- content -->
-	  <p>邮件通知我今天下午网易互娱一面视频面试，我当时心里是很紧张的。担心出现像之前今日头条视频面一样的情况，在公司的会议室面试结果老大来视察，差点被抓到暗地找实习，所以这次我背着电脑回寝室面。</p>
-<p>中午怎么也睡不好觉，一点风吹草动就被惊醒，直接导致面试的时候思路不是很清晰。</p>
-<p>但是，其实最郁闷的是面试，面试官先让我介绍一下我自己。我就说本科怎么怎么样，然后现在研究生怎么怎么blabla说了一堆。介绍完之后，他也不问我基础，让我说一下我最熟练的项目。我就说我现在正在重构的视频侦查作战平台，基于angularjs1做的，然后介绍了一堆。然后面试官问我知不知道前端框架，用前端框架会轻松得很多，你知不知道vue。我说我看过一些文档，但因为公司项目基于angularjs1，所以没有上手实战过。</p>
-<p>看得出来他对我所知道的知识也不是很感兴趣，所以也没有怎么针对我所了解的知识进行深问。然后没问多少东西就结束了。最后的最后他给我提了一些意见：对前端的兴趣是有的，但热情不够= =。。。让我多去看github上人家写的源码。</p>
-<p>本来我以为会像头条那样把基础问得很深，问得特别难，没想到会被技术刷人了。</p>
-<p>结论：果然我要去上手实战一下 Vue 么！</p>
-<p>后来佳静回来了，说了一番话让我没那么感觉郁闷了。她说不仅是前端团队在选择你，其实你也要选择前端团队。其实框架是互通的，如果他们并不知道angularjs也是前端框架的话，那说明这个团队其实知识面也是局限的，可能在这个团队学到的东西也很有限。嗯，我觉得也有道理。</p>
-	  
+	  <p>华为笔试题，前面两道题非常简单就不进行记录了。</p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>输入是一个整型数组，数组里的整形数可以是正数，也可以是负数。子数组指的是数组中连续的一个或多个元素的集合，求这些子数组中，求和后最大值是多少。</p>
+<p><strong>输入描述：</strong></p>
+<blockquote>
+<p>一个整型数组</p>
+</blockquote>
+<p><strong>输出描述：</strong></p>
+<blockquote>
+<p>最大连续子数组的和。</p>
+</blockquote>
+<h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><pre><code>function GreatSum(arr){
+    var sum = 0;
+    var result = 0;
+    for(var i in arr){
+        sum += arr[i];
+        if(sum &lt; 0){
+            sum = 0;
+        }
+        if(sum &gt; result){
+            result = sum;
+        }
+        if(result == 0){
+            for(var j in arr){
+                if(result == 0){
+                    result = arr[j];
+                } else if (result &lt; arr[j]){
+                    result = arr[j];
+                }
+            }
+        }
+    }
+    return result;
+}
+</code></pre>	  
 
 	  <div>
   		<center>
@@ -87,16 +113,14 @@
 	
 	
 		
-	
-		
 			
 			
 		
 	
 		
-			
-			
-			
+	
+		
+	
 		
 	
 		
@@ -107,7 +131,7 @@
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	
-		<li class="next"><a href="/2018/03/27/前端面试整理/HTML/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
 	
 </ul>
 </div>
