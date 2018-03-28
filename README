@@ -30,3 +30,9 @@ toc: true
 3.hexo clean
 4.清理后启动本地查看预览
 5.hexo d -g
+
+#博客备份
+1.git checkout backups  //切换到备份分支
+2.git add . //添加文件
+3.git commit -m "backups"  //提交
+4.git push origin backups  //提交备份源文件
