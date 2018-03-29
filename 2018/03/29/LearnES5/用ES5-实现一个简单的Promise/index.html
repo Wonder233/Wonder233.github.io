@@ -67,30 +67,8 @@
 	
 
 	  <!-- content -->
-	  <h2 id="Promise使用"><a href="#Promise使用" class="headerlink" title="Promise使用"></a>Promise使用</h2><pre><code>function fn1(resolve, reject) {
-    setTimeout(function() {
-        console.log(&apos;步骤一：执行&apos;);
-        resolve(&apos;1&apos;);
-    },500);
-}
-
-function fn2(resolve, reject) {
-    setTimeout(function() {
-        console.log(&apos;步骤二：执行&apos;);
-        resolve(&apos;2&apos;);
-    },100);
-}
-
-new Promise(fn1).then(function(val){
-    console.log(val);
-    return new Promise(fn2);
-}).then(function(val){
-    console.log(val);
-    return 33;
-}).then(function(val){
-    console.log(val);
-});
-</code></pre><h2 id="Promise-标准解读"><a href="#Promise-标准解读" class="headerlink" title="Promise 标准解读"></a>Promise 标准解读</h2><p><a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+标准：</a></p>
+	  <h2 id="Promise使用"><a href="#Promise使用" class="headerlink" title="Promise使用"></a>Promise使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'步骤一：执行'</span>);</span><br><span class="line">        resolve(<span class="string">'1'</span>);</span><br><span class="line">    &#125;,<span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'步骤二：执行'</span>);</span><br><span class="line">        resolve(<span class="string">'2'</span>);</span><br><span class="line">    &#125;,<span class="number">100</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(fn1).then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(fn2);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">33</span>;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Promise-标准解读"><a href="#Promise-标准解读" class="headerlink" title="Promise 标准解读"></a>Promise 标准解读</h2><p><a href="https://promisesaplus.com/" target="_blank" rel="noopener">Promises/A+标准：</a></p>
 <ol>
 <li>只有一个then方法，没有catch，race，all等方法，甚至没有构造函数。<ul>
 <li>Promise 标准中仅指定了 Promise 对象的 then 方法的行为，其它一切我们常见的方法/函数都并没有指定，包括 catch，race，all 等常用方法，甚至也没有指定该如何构造出一个 Promise 对象，另外 then 也没有一般实现中（Q, $q等）所支持的第三个参数，一般称 onProgress。</li>
@@ -106,25 +84,10 @@ new Promise(fn1).then(function(val){
 </li>
 <li>Promise 的初始状态为 pending，它可以由此状态转换为 fulfilled（本文为了一致把此状态叫做 resolved）或者 rejected，一旦状态确定，就不可以再次转换为其它状态，状态确定的过程称为 settle。</li>
 </ol>
-<p>首先看一下原生 ES6 中Promise 的使用：</p>
-<pre><code>// Promise构造函数接收一个 executor（执行） 函数。
-// executor函数执行完同步或异步操作后，调用它的两个参数resolve和reject
-var promise = new Promise(function(resolve, reject) {
-
-    //如果操作成功，调用resolve并传入value
-    //如果操作失败，调用reject并传入reason
-});
-</code></pre><h2 id="实现构造函数的框架："><a href="#实现构造函数的框架：" class="headerlink" title="实现构造函数的框架："></a>实现构造函数的框架：</h2><p>先实现构造函数的框架如下：</p>
-<pre><code>function myPromise(executor) {
-    var self = this；
-    self.status = &apos;pending&apos;； // Promise当前的状态
-    self.data = undefined；  // Promise的值
-    self.onResolvedCallback = []； // Promise resolve时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面
-    self.onRejectedCallback = []； // Promise reject时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面
-
-    executor(resolve, reject)； // 执行executor并传入相应的参数
-}
-</code></pre><p>上面的代码基本实现了Promise构造函数的主体，但目前还有两个问题：</p>
+<p>首先看一下原生 ES6 中Promise 的使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Promise构造函数接收一个 executor（执行） 函数。</span></span><br><span class="line"><span class="comment">// executor函数执行完同步或异步操作后，调用它的两个参数resolve和reject</span></span><br><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">//如果操作成功，调用resolve并传入value</span></span><br><span class="line">	<span class="comment">//如果操作失败，调用reject并传入reason</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现构造函数的框架："><a href="#实现构造函数的框架：" class="headerlink" title="实现构造函数的框架："></a>实现构造函数的框架：</h2><p>先实现构造函数的框架如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function myPromise(executor) &#123;</span><br><span class="line">	<span class="selector-tag">var</span> self = this；</span><br><span class="line">	self<span class="selector-class">.status</span> = <span class="string">'pending'</span>； <span class="comment">// Promise当前的状态</span></span><br><span class="line">	self<span class="selector-class">.data</span> = undefined；  <span class="comment">// Promise的值</span></span><br><span class="line">	<span class="comment">// Promise resolve时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面</span></span><br><span class="line">	self<span class="selector-class">.onResolvedCallback</span> = []； </span><br><span class="line">	<span class="comment">// Promise reject时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面</span></span><br><span class="line">	self<span class="selector-class">.onRejectedCallback</span> = []； </span><br><span class="line">	</span><br><span class="line">	executor(resolve, reject)； <span class="comment">// 执行executor并传入相应的参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码基本实现了Promise构造函数的主体，但目前还有两个问题：</p>
 <ol>
 <li>我们给executor函数传了两个参数：resolve 和 reject，这两个参数目前还没有定义。</li>
 <li>executor 有可能会出错（throw），类似下面这样，而如果 executor 出错，Promise 应该被其 throw 出值 reject：</li>
@@ -133,22 +96,9 @@ var promise = new Promise(function(resolve, reject) {
 <p>所以我们需要在构造函数里定义resolve和reject这两个函数：</p>
 <h2 id="定义-resolve-和-reject-两个函数："><a href="#定义-resolve-和-reject-两个函数：" class="headerlink" title="定义 resolve 和 reject 两个函数："></a>定义 resolve 和 reject 两个函数：</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myPromise</span><span class="params">(executor)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> <span class="keyword">self</span> = this;</span><br><span class="line">	<span class="keyword">self</span>.status = <span class="string">'pending'</span>; <span class="comment">// Promise当前的状态</span></span><br><span class="line">	<span class="keyword">self</span>.data = undefined;  <span class="comment">// Promise的值</span></span><br><span class="line">	<span class="keyword">self</span>.onResolvedCallback = []; <span class="comment">// Promise resolve时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面</span></span><br><span class="line">	<span class="keyword">self</span>.onRejectedCallback = []; <span class="comment">// Promise reject时的回调函数集，因为在Promise结束之前有可能有多个回调添加到它上面</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">resolve</span><span class="params">(value)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">reject</span><span class="params">(reason)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 考虑到执行executor的过程中有可能出错，所以我们用try/catch块给包起来，并且在出错后以catch到的值reject掉这个Promise</span></span><br><span class="line">	<span class="keyword">try</span> &#123; </span><br><span class="line">		executor(resolve, reject); <span class="comment">// 执行executor</span></span><br><span class="line">	&#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">		reject(e);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><strong>resolve和reject这两个函数能不能不定义在构造函数里？</strong><br>考虑到我们在 executor 函数里是以 resolve(value)，reject(reason) 的形式调用的这两个函数，而不是以 resolve.call(promise, value)，reject.call(promise, reason) 这种形式调用的，所以这两个函数在调用时的内部也必然有一个隐含的 this ，也就是说，要么这两个函数是经过 bind 后传给了executor，要么它们定义在构造函数的内部，使用 self 来访问所属的Promise对象。<br>所以如果我们想把这两个函数定义在构造函数的外部，确实是可以这么写的：</p>
+<p><strong>resolve和reject这两个函数能不能不定义在构造函数里？</strong><br>考虑到我们在 executor 函数里是以 resolve(value)，reject(reason) 的形式调用的这两个函数，而不是以 resolve.call(promise, value)，reject.call(promise, reason) 这种形式调用的，所以这两个函数在调用时的内部也必然有一个隐含的 this ，也就是说，要么这两个函数是经过 bind 后传给了executor，要么它们定义在构造函数的内部，使用 self 来访问所属的Promise对象。<br>所以如果我们想把这两个函数定义在构造函数的外部，确实是可以这么写的：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">resolve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reject</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">// TODO</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myPromise</span><span class="params">(executor)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    executor(resolve.bind(<span class="keyword">this</span>), reject.bind(<span class="keyword">this</span>));</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    reject.bind(<span class="keyword">this</span>)(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<pre><code>function resolve() {
-  // TODO
-}
-function reject() {
-  // TODO
-}
-function myPromise(executor) {
-  try {
-    executor(resolve.bind(this), reject.bind(this));
-  } catch(e) {
-    reject.bind(this)(e);
-  }
-}
-</code></pre><blockquote>
+<blockquote>
 <p>但是众所周知，bind 会返回一个新的函数，这么一来还是相当于每个 Promise 对象都有一对属于自己的 resolve 和 reject 函数，就跟写在构造函数内部没什么区别了，所以我们就直接把这两个函数定义在构造函数里面了。<br>另外，这里的实现并没有考虑隐藏 this 上的变量，这使得这个 Promise 的状态可以在 executor 函数外部被改变，在一个靠谱的实现里，构造出的 Promise 对象的状态和最终结果应当是无法从外部更改的。</p>
 </blockquote>
 <p>接下来，实现resolve和reject这两个函数。</p>
