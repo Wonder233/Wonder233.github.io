@@ -149,7 +149,7 @@ event.publish(&apos;list&apos;, {data: [&apos;one,&apos;, &apos;two&apos;]});
 <li>一个promise的状态只可能从“等待”转到“完成”态或者“拒绝”态，不能逆向转换，同时“完成”态和“拒绝”态不能相互转换；</li>
 <li>promise 必须实现 then 方法（可以说，then就是promise的核心），而且 then 必须返回一个 promise，同一个 promise 的 then 可以调用多次，并且回调的执行顺序跟它们被定义时的顺序一致；</li>
 <li>then 方法接受两个参数，第一个参数是 Promise 被完成时要调用的函数，在 promise 由“等待”态转换到“完成”态时调用；另一个是 Promise 被拒绝时的回调，在 promise 由“等待”态转换到“拒绝”态时调用。</li>
-<li>同时，then 可以接受另一个 promise 传入，也接受一个“类 then ”的对象或方法，即 thenable 对象。</li>
+<li>同时，then 可以接受另一个 promise 传入，也接受一个“类 then ”的对象或方法，即 thenable 对象。（thenable 是一个包含了then方法的对象或函数。）</li>
 </ol>
 <pre><code>let promise = readFile(&quot;example.txt);
 
@@ -175,6 +175,10 @@ promise.then(function(contents){
 	
 		
 			
+		
+	
+		
+			
 			
 		
 	
@@ -198,7 +202,7 @@ promise.then(function(contents){
 	
 	
 	
-		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+		<li class="prev"><a href="/2018/03/29/LearnES5/用ES5-实现一个简单的Promise/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
 	
 	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
 	
