@@ -20,13 +20,6 @@ hexo d -g //生成、发布
 # 发表博客
 1. hexo new "title"
 2. 编辑md
-
-title: Tag Plugins
-date: 2018-03-27 10:17:16
-categories: Docs
-toc: true
----
-
 3. hexo clean
 4. 清理后启动本地查看预览
 5. hexo d -g
