@@ -67,7 +67,107 @@
 	
 
 	  <!-- content -->
-	  	  
+	  <h2 id="事件绑定方法"><a href="#事件绑定方法" class="headerlink" title="事件绑定方法"></a>事件绑定方法</h2><h3 id="直接运行-JavaScript-代码"><a href="#直接运行-JavaScript-代码" class="headerlink" title="直接运行 JavaScript 代码"></a>直接运行 JavaScript 代码</h3><p>用 <code>v-on</code> 指令监听 DOM 事件，并在触发时运行一些 JavaScript 代码。<br>示例：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"example-1"</span>&gt;</span><br><span class="line">  &lt;button v-<span class="keyword">on</span>:click=<span class="string">"counter += 1"</span>&gt;Add <span class="number">1</span>&lt;/button&gt;</span><br><span class="line">  &lt;p&gt;The button <span class="keyword">above</span> has been clicked &#123;&#123; counter &#125;&#125; <span class="keyword">times</span>.&lt;/p&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> <span class="type">Vue</span>(&#123;</span><br><span class="line">  el: <span class="type"></span>'<span class="meta">#example-1',</span></span><br><span class="line">  data: <span class="type"></span>&#123;</span><br><span class="line">    counter: <span class="type">0</span></span><br><span class="line"><span class="type">  </span>&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://codepen.io/Wonder233/pen/MVGYRz" target="_blank" rel="noopener">结果演示</a></strong></p>
+<h3 id="添加事件处理方法名称"><a href="#添加事件处理方法名称" class="headerlink" title="添加事件处理方法名称"></a>添加事件处理方法名称</h3><p><code>v-on</code> 可以接收一个需要调用的方法名称。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example-2"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- `greet` 是在下面定义的方法名 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"greet"</span>&gt;</span>Greet<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> example2 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example-2'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    name: <span class="string">'Wonder233'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 在 `methods` 对象中定义方法</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    greet: <span class="function"><span class="keyword">function</span> <span class="params">(event)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// `this` 在方法里指向当前 Vue 实例</span></span><br><span class="line">      alert(<span class="string">'Hello '</span> + <span class="keyword">this</span>.name + <span class="string">'!'</span>);</span><br><span class="line">      <span class="comment">// `event` 是原生 DOM 事件</span></span><br><span class="line">      <span class="keyword">if</span> (event) &#123;</span><br><span class="line">        alert(event.target.tagName);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以用 JavaScript 直接调用方法</span></span><br><span class="line">example2.greet() <span class="comment">// =&gt; 'Hello Wonder233!'</span></span><br></pre></td></tr></table></figure>
+<p><strong><a href="https://codepen.io/Wonder233/pen/oqdgRb" target="_blank" rel="noopener">结果演示</a></strong></p>
+<h3 id="在内联处理器（JavaScript语句）中调用方法"><a href="#在内联处理器（JavaScript语句）中调用方法" class="headerlink" title="在内联处理器（JavaScript语句）中调用方法"></a>在内联处理器（JavaScript语句）中调用方法</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"example-3"</span>&gt;</span><br><span class="line">  &lt;button v-<span class="keyword">on</span>:click=<span class="string">"say('hi')"</span>&gt;Say hi&lt;/button&gt;</span><br><span class="line">  &lt;button v-<span class="keyword">on</span>:click=<span class="string">"say('what')"</span>&gt;Say what&lt;/button&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">new</span> <span class="selector-tag">Vue</span>(&#123;</span><br><span class="line">  <span class="attribute">el</span>: <span class="string">'#example-3'</span>,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    say: function (message) &#123;</span><br><span class="line">      <span class="built_in">alert</span>(message)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>有时也需要在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 <code>$event</code> 把它传入方法：<br><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">button</span> v-<span class="keyword">on</span>:click=<span class="string">"warn('Form cannot be submitted yet.', $event)"</span>&gt;</span><br><span class="line">  Submit</span><br><span class="line">&lt;/<span class="keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  warn: <span class="keyword">function</span> (message, <span class="keyword">event</span>) &#123;</span><br><span class="line">    <span class="comment">// 现在我们可以访问原生事件对象</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">event</span>) </span><br><span class="line">	    <span class="keyword">event</span><span class="variable">.preventDefault</span>();</span><br><span class="line">    alert(message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><h3 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h3><p><strong>目的：</strong><br>为了使方法只有纯粹的数据逻辑，不去处理 DOM 事件细节。</p>
+<p><strong>解决办法：</strong><br>使用事件修饰符。</p>
+<p>修饰符是由点开头的指令后缀来表示的。</p>
+<ul>
+<li><code>.stop</code></li>
+<li><code>.prevent</code></li>
+<li><code>.capture</code></li>
+<li><code>.self</code></li>
+<li><code>.once</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 阻止单击事件继续传播 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 提交事件不再重载页面 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修饰符可以串联 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop.prevent</span>=<span class="string">"doThat"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 只有修饰符 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 添加事件监听器时使用事件捕获模式 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 即元素自身触发的事件先在此处处理，然后才交由内部元素进行处理 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.capture</span>=<span class="string">"doThis"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 只当在 event.target 是当前元素自身时触发处理函数 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 即事件不是从内部元素触发的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。<br>因此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>2.1.4 新增</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 点击事件将只会触发一次 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.once</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>不像其它只能对原生的 DOM 事件起作用的修饰符，<code>.once</code> 修饰符还能被用到自定义的组件事件上。</p>
+<hr>
+<blockquote>
+<p>2.3.0 新增</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 而不会等待 `onScroll` 完成  --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 这其中包含 `event.preventDefault()` 的情况 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:scroll.passive</span>=<span class="string">"onScroll"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>.passive</code> 修饰符尤其能够提升移动端的性能。</p>
+<blockquote>
+<p>注意：<br>不要把 <code>.passive</code> 和 <code>.prevent</code> 一起使用，因为 <code>.prevent</code> 将会被忽略，同时浏览器可能会向你展示一个警告。<br>请记住，<code>.passive</code> 会告诉浏览器你不想阻止事件的默认行为。</p>
+</blockquote>
+<h3 id="按键修饰符"><a href="#按键修饰符" class="headerlink" title="按键修饰符"></a>按键修饰符</h3><p>Vue 允许为 <code>v-on</code> 在监听键盘事件时添加按键修饰符：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 只有在 `keyCode` 是 13 时调用 `vm.submit()` --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.13</span>=<span class="string">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Vue 为最常用的按键提供了别名：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 同上 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-on:keyup.enter</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 缩写语法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.enter</span>=<span class="string">"submit"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>全部的按键别名：</p>
+<ul>
+<li><code>.enter</code></li>
+<li><code>.tab</code></li>
+<li><code>.delete</code> (捕获“删除”和“退格”键)</li>
+<li><code>.esc</code></li>
+<li><code>.space</code></li>
+<li><code>.up</code></li>
+<li><code>.down</code></li>
+<li><code>.left</code></li>
+<li><code>.right</code></li>
+</ul>
+<p>可以通过全局 <code>config.keyCodes</code> 对象自定义按键修饰符别名：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可以使用 `v-on:keyup.f1`</span></span><br><span class="line">Vue<span class="selector-class">.config</span><span class="selector-class">.keyCodes</span><span class="selector-class">.f1</span> = <span class="number">112</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="自动匹配按键修饰符"><a href="#自动匹配按键修饰符" class="headerlink" title="自动匹配按键修饰符"></a>自动匹配按键修饰符</h4><blockquote>
+<p>2.5.0 新增</p>
+</blockquote>
+<p>可直接将 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/key" target="_blank" rel="noopener">KeyboardEvent.key</a> 暴露的任意有效按键名转换为 kebab-case（短横线命名） 来作为修饰符：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">input</span> @<span class="keyword">keyup</span>.<span class="keyword">page</span>-<span class="keyword">down</span>="<span class="keyword">onPageDown</span>"&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在上面的例子中，处理函数仅在 $event.key === ‘PageDown’ 时被调用。</p>
+<h3 id="系统修饰键"><a href="#系统修饰键" class="headerlink" title="系统修饰键"></a>系统修饰键</h3><blockquote>
+<p>2.1.0 新增</p>
+</blockquote>
+<p>可以用如下修饰符来实现仅在<strong>按下相应按键</strong>时才触发<strong>鼠标或键盘事件</strong>的监听器。</p>
+<ul>
+<li><code>.ctrl</code></li>
+<li><code>.alt</code></li>
+<li><code>.shift</code></li>
+<li><code>.meta</code></li>
+</ul>
+<blockquote>
+<p>注意：<br>在 Mac 系统键盘上，meta 对应 command 键 (⌘)。<br>在 Windows 系统键盘 meta 对应 Windows 徽标键 (⊞)。<br>在 Sun 操作系统键盘上，meta 对应实心宝石键 (◆)。<br>在其他特定键盘上，尤其在 MIT 和 Lisp 机器的键盘、以及其后继产品，比如 Knight 键盘、space-cadet 键盘，meta 被标记为“META”。<br>在 Symbolics 键盘上，meta 被标记为“META”或者“Meta”。</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Alt + C --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.alt.67</span>=<span class="string">"clear"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Ctrl + Click --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click.ctrl</span>=<span class="string">"doSomething"</span>&gt;</span>Do something<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>请注意修饰键与常规按键不同：<br>在和 keyup 事件一起用时，事件触发时<strong>修饰键必须处于按下状态</strong>。<br>换句话说，只有在按住 ctrl 的情况下释放其它按键，才能触发 keyup.ctrl。而单单释放 ctrl 也不会触发事件。如果你想要这样的行为，请为 ctrl 换用 keyCode：keyup.17。</p>
+</blockquote>
+<h4 id="exact-修饰符"><a href="#exact-修饰符" class="headerlink" title=".exact 修饰符"></a>.exact 修饰符</h4><blockquote>
+<p>2.5.0 新增</p>
+</blockquote>
+<p><code>.exact</code> 修饰符允许你控制由<strong>精确的系统修饰符组合触发的事件</strong>。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 即使 Alt 或 Shift 被一同按下时也会触发 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.ctrl</span>=<span class="string">"onClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 有且只有 Ctrl 被按下的时候才触发 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.ctrl.exact</span>=<span class="string">"onCtrlClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 没有任何系统修饰符被按下的时候才触发 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.exact</span>=<span class="string">"onClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="https://codepen.io/Wonder233/pen/YaLXrx" target="_blank" rel="noopener">参考示例</a></p>
+<h4 id="鼠标按钮修饰符"><a href="#鼠标按钮修饰符" class="headerlink" title="鼠标按钮修饰符"></a>鼠标按钮修饰符</h4><blockquote>
+<p>2.2.0 新增</p>
+</blockquote>
+<p>限制处理函数仅响应特定的鼠标按钮：</p>
+<ul>
+<li><code>.left</code></li>
+<li><code>.right</code></li>
+<li><code>.middle</code></li>
+</ul>
+<h2 id="为什么在-HTML-中监听事件"><a href="#为什么在-HTML-中监听事件" class="headerlink" title="为什么在 HTML 中监听事件?"></a>为什么在 HTML 中监听事件?</h2><p>Vue 的这种事件监听的方式违背了关注点分离 (separation of concern) 这个长期以来的优良传统。</p>
+<p>但不必担心，因为所有的 Vue.js <strong>事件处理方法和表达式都严格绑定在当前视图的 ViewModel</strong> 上，它不会导致任何维护上的困难。实际上，使用 v-on 有几个好处：</p>
+<ol>
+<li><p>扫一眼 HTML 模板便<strong>能轻松定位</strong>在 JavaScript 代码里<strong>对应的方法</strong>。</p>
+</li>
+<li><p>因为你无须在 JavaScript 里手动绑定事件，你的 <strong>ViewModel 代码可以是非常纯粹的逻辑</strong>，和 DOM 完全解耦，更易于测试。</p>
+</li>
+<li><p>当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。</p>
+</li>
+</ol>
+	  
 
 	  <div>
   		<center>
