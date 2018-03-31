@@ -76,6 +76,9 @@
 }
 
 /* about me */
+.aboutMe {
+  line-height: 7.2em;
+}
 .aboutMe ul{
   list-style: none;
 }

@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>事件处理</title>
+      <link href="/2018/03/31/Vue%E5%AD%A6%E4%B9%A0/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/"/>
+      <url>/2018/03/31/Vue%E5%AD%A6%E4%B9%A0/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</url>
+      <content type="html"><![CDATA[]]></content>
+      
+      <categories>
+          
+          <category> Vue学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>列表渲染</title>
       <link href="/2018/03/31/Vue%E5%AD%A6%E4%B9%A0/%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/"/>
       <url>/2018/03/31/Vue%E5%AD%A6%E4%B9%A0/%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/</url>
