@@ -1,7 +1,7 @@
 # Wonder233.github.io
 求知若渴,虚怀若愚
 
-#本地运行
+# 本地运行
 hexo clean //清空
 hexo g     //生成
 hexo s     //本地运行
@@ -9,7 +9,7 @@ hexo s     //本地运行
 hexo clean 
 hexo s -g //生成、运行
 
-#发布
+# 发布
 hexo clean 
 hexo g
 hexo d  //发布
@@ -17,9 +17,9 @@ hexo d  //发布
 hexo clean 
 hexo d -g //生成、发布
 
-#发表博客
-1.hexo new "title"
-2.编辑md
+# 发表博客
+1. hexo new "title"
+2. 编辑md
 
 title: Tag Plugins
 date: 2018-03-27 10:17:16
@@ -27,12 +27,15 @@ categories: Docs
 toc: true
 ---
 
-3.hexo clean
-4.清理后启动本地查看预览
-5.hexo d -g
+3. hexo clean
+4. 清理后启动本地查看预览
+5. hexo d -g
+ 
+# 博客备份
+1. git checkout backups  //切换到备份分支
+2. git add . //添加文件
+3. git commit -m "backups"  //提交
+4. git push origin backups  //提交备份源文件
 
-#博客备份
-1.git checkout backups  //切换到备份分支
-2.git add . //添加文件
-3.git commit -m "backups"  //提交
-4.git push origin backups  //提交备份源文件
+# 注意事项：
+1. .md文件中若使用"{}"，要转义：&#123; &#125; ，参考[Markdown 语法说明](https://www.appinn.com/markdown/)

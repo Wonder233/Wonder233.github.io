@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>模板语法 | Wonder233&#39;s Blog</title>
+  <meta name="author" content="Wonder">
+  
+  <meta name="description" content="努力努力再努力">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="模板语法"/>
+  <meta property="og:site_name" content="Wonder233&#39;s Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Wonder233&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">Wonder233&#39;s Blog</a><span class="split"></span><span class="title">模板语法</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2018-03-30</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  <div class="col-xs-12 col-sm-3 col-md-3 toc"> 
+	<!-- toc -->
+<script type="text/javascript">
+		jQuery(document).ready(function() {
+ 		   generateWikiTOC('.note', '.toc',  2 , 2 );
+		});
+</script>
+  </div><!-- col-md-3 -->
+  
+  
+
+  
+  <div class="col-xs-12 col-sm-9 col-md-9 note">
+	
+
+	  <!-- content -->
+	  <p>Vue.js 使用了<strong>基于 HTML 的模板语法</strong>，允许开发者声明式地<strong>将 DOM 绑定至底层 Vue 实例的数据</strong>。所有 Vue.js 的模板都是合法的 HTML ，所以能被遵循规范的浏览器和 HTML 解析器解析。</p>
+<hr>
+<p>在底层的实现上，Vue 将模板编译成<strong>虚拟 DOM 渲染函数</strong>。结合响应系统，Vue 能够智能地计算出最少需要重新渲染多少组件，并把 DOM 操作次数减到最少。</p>
+<h2 id="插值——数据绑定"><a href="#插值——数据绑定" class="headerlink" title="插值——数据绑定"></a>插值——数据绑定</h2><h3 id="文本-——双大括号-123-123-125-125"><a href="#文本-——双大括号-123-123-125-125" class="headerlink" title="文本 ——双大括号&#123;&#123;&#125;&#125;"></a>文本 ——双大括号&#123;&#123;&#125;&#125;</h3><ol>
+<li>数据绑定最常见的形式就是使用<strong>“Mustache”语法 (双大括号)</strong> 的文本插值：<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Message: </span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>Mustache 标签将会被替代为对应数据对象上 msg 属性的值。无论何时，绑定的数据对象上 msg 属性发生了改变，插值处的内容都会更新。</p>
+<ol start="2">
+<li>通过使用 <strong>v-once</strong> 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上的其它数据绑定：<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-once</span>&gt;</span>这个将不会改变: </span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="原始-HTML——v-html"><a href="#原始-HTML——v-html" class="headerlink" title="原始 HTML——v-html"></a>原始 HTML——v-html</h3><p>双大括号会将数据解释为普通文本，而非 HTML 代码。<br>为了输出真正的 HTML，你需要使用 v-html 指令：<br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Using mustaches: </span><span class="template-variable">&#123;&#123; rawHtml &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Using v-html directive: <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-html</span>=<span class="string">"rawHtml"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/03/30/Vue学习/模板语法/./1.png" alt="Alt text"><br>这个 span 的内容将会被替换成为属性值 rawHtml，直接作为 HTML——<strong>会忽略解析属性值中的数据绑定</strong>。</p>
+<blockquote>
+<p>不能使用 v-html 来复合局部模板，因为 Vue 不是基于字符串的模板引擎。</p>
+</blockquote>
+<h3 id="绑定-HTML-属性——v-bind"><a href="#绑定-HTML-属性——v-bind" class="headerlink" title="绑定 HTML 属性——v-bind"></a>绑定 HTML 属性——v-bind</h3><p>双大括号语法&#123;&#123;&#125;&#125;不能作用在 HTML 特性上，此时应该使用 v-bind 指令：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> v-bind:<span class="built_in">id</span>=<span class="string">"dynamicId"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：上面的 dynamicId 是一个变量。</p>
+</blockquote>
+<p>在布尔特性的情况下，它们的存在即暗示为 true，v-bind 工作起来略有不同：<br><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">button</span> v-bind:disabled=<span class="string">"isButtonDisabled"</span>&gt;<span class="keyword">Button</span>&lt;/<span class="keyword">button</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>如果 isButtonDisabled 的值是 null、undefined 或 false，则 disabled 特性甚至不会被包含在渲染出来的 &lt; button &gt; 元素中。</p>
+<h3 id="使用-JavaScript-表达式"><a href="#使用-JavaScript-表达式" class="headerlink" title="使用 JavaScript 表达式"></a>使用 JavaScript 表达式</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; number + <span class="number">1</span> &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123; ok ? <span class="string">'YES'</span> : <span class="string">'NO'</span> &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123; message.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>) &#125;&#125;</span><br><span class="line"></span><br><span class="line">&lt;div v-bind:id=<span class="string">"'list-' + id"</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>这些表达式会在所属 Vue 实例的数据作用域下作为 JavaScript 被解析。</p>
+<p><strong>限制：</strong><br>每个绑定都只能包含<strong>单个表达式</strong>。<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 以下例子都将不会生效 --&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 这是语句，不是表达式 --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-variable">&#123;&#123; var a = 1 &#125;</span><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- 流控制也不会生效，请使用三元表达式 --&gt;</span></span></span><br><span class="line"><span class="xml"></span><span class="template-variable">&#123;&#123; <span class="keyword">if</span> (ok) &#123; return message &#125;</span><span class="xml"> &#125;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ol>
+<li>指令 (Directives) 是带有 v- 前缀的特殊属性。</li>
+<li>指令属性的值预期是单个 JavaScript 表达式（v-for 是例外情况）。</li>
+<li>指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。</li>
+</ol>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>一些指令能够接收一个“参数”，在指令名称之后以冒号表示。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- v-bind 指令可以用于响应式地更新 HTML 属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- v-on 指令用于监听 DOM 事件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click</span>=<span class="string">"doSomething"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><p>修饰符 (Modifiers) 是以<strong>半角句号 .</strong> 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- .prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault() --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h2><p>Vue.js 为 v-bind 和 v-on 这两个最常用的指令，提供了特定简写：</p>
+<h3 id="v-bind-缩写"><a href="#v-bind-缩写" class="headerlink" title="v-bind 缩写"></a>v-bind 缩写</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 完整语法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">"url"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">"url"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="v-on-缩写"><a href="#v-on-缩写" class="headerlink" title="v-on 缩写"></a>v-on 缩写</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 完整语法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click</span>=<span class="string">"doSomething"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 缩写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> @<span class="attr">click</span>=<span class="string">"doSomething"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+		
+	
+	
+	
+		<li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2018/03/30/Vue学习/计算属性和侦听器/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2018 Wonder
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-wixo/">Wixo</a>.    
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>
