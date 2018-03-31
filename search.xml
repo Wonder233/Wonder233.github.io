@@ -264,21 +264,6 @@
     </entry>
     
     <entry>
-      <title>博客和域名连接后,博客的重新开始</title>
-      <link href="/2018/03/27/%E7%94%9F%E6%B4%BB/%E5%8D%9A%E5%AE%A2%E5%92%8C%E5%9F%9F%E5%90%8D%E8%BF%9E%E6%8E%A5%E5%90%8E-%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%87%8D%E6%96%B0%E5%BC%80%E5%A7%8B/"/>
-      <url>/2018/03/27/%E7%94%9F%E6%B4%BB/%E5%8D%9A%E5%AE%A2%E5%92%8C%E5%9F%9F%E5%90%8D%E8%BF%9E%E6%8E%A5%E5%90%8E-%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%87%8D%E6%96%B0%E5%BC%80%E5%A7%8B/</url>
-      <content type="html"><![CDATA[<p>早很久前就想将原来的博客重新更换一下，想换一个更好的主题，能够让我将我需要的知识保存并更方便查看。也是早很久前就想买个属于自己的域名。<br>腾讯来华科进行技术宣讲，现在我很庆幸我当时去了。<br>在宣讲会上可能能获取到的知识不多，但是我领到了一张腾讯云的100元优惠券。O(∩_∩)O 用那张优惠券，免费买了三年的域名使用权~<br>于是，现在我又重新开始在这里写博客啦！</p>]]></content>
-      
-      <categories>
-          
-          <category> 生活 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    <entry>
       <title>ECMAScript数据类型</title>
       <link href="/2018/03/27/LearnES5/ECMAScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
       <url>/2018/03/27/LearnES5/ECMAScript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
@@ -296,6 +281,21 @@
             <tag> JavaScript </tag>
             
         </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>博客和域名连接后,博客的重新开始</title>
+      <link href="/2018/03/27/%E7%94%9F%E6%B4%BB/%E5%8D%9A%E5%AE%A2%E5%92%8C%E5%9F%9F%E5%90%8D%E8%BF%9E%E6%8E%A5%E5%90%8E-%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%87%8D%E6%96%B0%E5%BC%80%E5%A7%8B/"/>
+      <url>/2018/03/27/%E7%94%9F%E6%B4%BB/%E5%8D%9A%E5%AE%A2%E5%92%8C%E5%9F%9F%E5%90%8D%E8%BF%9E%E6%8E%A5%E5%90%8E-%E5%8D%9A%E5%AE%A2%E7%9A%84%E9%87%8D%E6%96%B0%E5%BC%80%E5%A7%8B/</url>
+      <content type="html"><![CDATA[<p>早很久前就想将原来的博客重新更换一下，想换一个更好的主题，能够让我将我需要的知识保存并更方便查看。也是早很久前就想买个属于自己的域名。<br>腾讯来华科进行技术宣讲，现在我很庆幸我当时去了。<br>在宣讲会上可能能获取到的知识不多，但是我领到了一张腾讯云的100元优惠券。O(∩_∩)O 用那张优惠券，免费买了三年的域名使用权~<br>于是，现在我又重新开始在这里写博客啦！</p>]]></content>
+      
+      <categories>
+          
+          <category> 生活 </category>
+          
+      </categories>
+      
       
     </entry>
     
