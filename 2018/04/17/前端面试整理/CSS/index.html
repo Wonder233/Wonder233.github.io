@@ -67,7 +67,318 @@
 	
 
 	  <!-- content -->
-	  	  
+	  <h2 id="1、请简述盒模型。"><a href="#1、请简述盒模型。" class="headerlink" title="1、请简述盒模型。"></a>1、请简述盒模型。</h2><p><strong>IE6盒模型</strong> 与 <strong>W3C标准盒模型</strong>。</p>
+<p>文档中的每个元素被描绘为矩形盒子。盒子有四个边界：外边距边界 <code>margin</code>, 边框边界 <code>border</code>, 内边距边界 <code>padding</code> 与内容边界 <code>content</code> 。</p>
+<blockquote>
+<p>CSS3 中有个 <code>box-sizing</code> 属性可以控制盒子的计算方式。</p>
+</blockquote>
+<p><strong>W3C盒子模型 content-box：</strong><br><code>padding</code> 和 <code>border</code> 不被包含在定义的 <code>width</code> 和 <code>height</code> 之内。对象的实际宽度 <code>Element width = width + border + padding</code>，但占有页面位置还要加上 <code>margin</code>。</p>
+<p><strong>IE6盒子模型 border-box：</strong><br><code>padding</code> 和 <code>border</code> 被包含在定义的 <code>width</code> 和 <code>height</code> 之内。对象的实际宽度 <code>Element width = width</code>， 即使定义有 <code>border</code> 和 <code>padding</code> 也不会改变对象的实际宽度。</p>
+<h2 id="2、什么是CSS-Hack"><a href="#2、什么是CSS-Hack" class="headerlink" title="2、什么是CSS Hack?"></a>2、什么是CSS Hack?</h2><p>针对不同的浏览器写不同的 CSS，就是 CSS Hack。</p>
+<p>IE浏览器 Hack 一般又分为三种，<strong>条件Hack</strong>、<strong>属性级Hack</strong>、<strong>选择符Hack</strong>。<br>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 1、条件Hack --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE]&gt;</span></span><br><span class="line"><span class="comment">  &lt;style&gt;</span></span><br><span class="line"><span class="comment">    .test&#123;color:red;&#125;</span></span><br><span class="line"><span class="comment">  &lt;/style&gt;</span></span><br><span class="line"><span class="comment">&lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* 2、属性Hack */</span></span><br><span class="line"><span class="selector-class">.test</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#090</span>\<span class="number">9</span>; <span class="comment">/* For IE8+ */</span></span><br><span class="line">  *color: #f00; /* For IE7 and earlier */</span><br><span class="line">  _<span class="selector-tag">color</span>: <span class="selector-id">#ff0</span>; <span class="comment">/* For IE6 and earlier */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 3、选择符Hack */</span></span><br><span class="line"></span><br><span class="line">* <span class="selector-tag">html</span> <span class="selector-class">.test</span> &#123; <span class="comment">/* For IE6 and earlier */</span></span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#090</span>;</span><br><span class="line">&#125; </span><br><span class="line">* + <span class="selector-tag">html</span> <span class="selector-class">.test</span> &#123; <span class="comment">/* For IE7 */</span></span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#ff0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3、px和em的区别。"><a href="#3、px和em的区别。" class="headerlink" title="3、px和em的区别。"></a>3、px和em的区别。</h2><p>px和em都是长度单位。<br><strong>区别：</strong></p>
+<ul>
+<li>px 的值是固定的，指定是多少就是多少，计算比较容易。</li>
+<li>em 的值不是固定的，并且 em 会继承父级元素的字体大小。</li>
+</ul>
+<p>浏览器的默认字体高都是 16 px。所以未经调整的浏览器都符合: 1 em = 16 px。那么 12 px = 0.75 em，10 px = 0.625 em。</p>
+<h2 id="4、-link和-import的区别"><a href="#4、-link和-import的区别" class="headerlink" title="4、 link和@import的区别?"></a>4、 link和@import的区别?</h2><p>两者都是外部引用CSS的方式。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">'stylesheet'</span> <span class="attr">rev</span>=<span class="string">'stylesheet'</span> <span class="attr">href</span>=<span class="string">'CSS文件 '</span> <span class="attr">type</span>=<span class="string">'text/css'</span> <span class="attr">media</span>=<span class="string">'all'</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">'text/css'</span> <span class="attr">media</span>=<span class="string">'screen'</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">     @<span class="keyword">import</span> url(<span class="string">'CSS文件 '</span>);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>区别：</strong></p>
+<ul>
+<li>link 是 XHTML 标签，除了加载 CSS 外，还可以定义 RSS 等其他事务； @import 属于 CSS 范畴，只能加载 CSS 。</li>
+<li>link 引用 CSS 时，在页面载入时同时加载； @import 需要页面网页完全载入以后加载。</li>
+<li>link 是 XHTML 标签，无兼容问题； @import 是在 CSS2.1 提出的，低版本的浏览器 IE5 以下不支持。</li>
+<li>link 支持使用 Javascript 控制 DOM 去改变样式；而 @import 不支持。</li>
+<li>link 方式的样式的权重 高于 @import 的权重。</li>
+</ul>
+<h2 id="5、-请你说说CSS选择器的类型有哪些，并举几个例子说明其用法？"><a href="#5、-请你说说CSS选择器的类型有哪些，并举几个例子说明其用法？" class="headerlink" title="5、 请你说说CSS选择器的类型有哪些，并举几个例子说明其用法？"></a>5、 请你说说CSS选择器的类型有哪些，并举几个例子说明其用法？</h2><ul>
+<li>ID选择器（如：<code>#myid</code>）</li>
+<li>类选择器（如： <code>.myclassname</code>）</li>
+<li>标签选择器（如：<code>body</code>，<code>div</code>，<code>p</code>， <code>ul</code>，<code>li</code>）</li>
+<li>相邻选择器（如：<code>h1 + p</code>）</li>
+<li>子选择器（如：<code>ul &gt; li</code>）</li>
+<li>后代选择器（如：<code>li a</code>）</li>
+<li>通配选择器（如：<code>*</code>号）</li>
+<li>属性选择器（CSS2 引入，如：<code>h1[class]</code>，<code>input[type=&quot;text&quot;]</code>，<code>input[class~=&quot;btn&quot;]</code> ）<ul>
+<li>字符串匹配的属性选择符~存在 ^开头 $结尾 *包含子串 |等于或以其开头</li>
+</ul>
+</li>
+<li>伪类选择器（如，<code>a:visited</code>，<code>input:focus</code>）</li>
+<li>伪元素选择器（如，<code>p:first-line</code>）</li>
+</ul>
+<h2 id="6、-CSS有什么特殊性-（优先级、计算特殊值）"><a href="#6、-CSS有什么特殊性-（优先级、计算特殊值）" class="headerlink" title="6、 CSS有什么特殊性?（优先级、计算特殊值）"></a>6、 CSS有什么特殊性?（优先级、计算特殊值）</h2><p><strong>优先级：</strong></p>
+<ol>
+<li>同类型，同级别的样式后者先于前者</li>
+<li>ID &gt; 类样式 &gt; 标签 &gt; *</li>
+<li>内联 &gt; ID选择器 &gt; 伪类 &gt; 属性选择器 &gt; 类选择器 &gt; 标签选择器 &gt; 通用选择器(*) &gt; 继承的样式</li>
+<li>具体 &gt; 泛化的，特殊性即css优先级</li>
+<li>近的 &gt; 远的 (内嵌样式 &gt; 内部样式表 &gt; 外联样式表)<ul>
+<li>内嵌样式：内嵌在元素中，<code>&lt;span style=&quot;color:red&quot;&gt;span&lt;/span&gt;</code></li>
+<li>内部样式表：在页面中的样式，写在<code>&lt;style&gt;&lt;/style&gt;</code>中的样式</li>
+<li>外联样式表：单独存在一个 css 文件中，通过 <code>link</code> 引入或 <code>import</code> 导入的样式</li>
+</ul>
+</li>
+<li><code>!important</code> 权重最高，比 <code>inline style</code> 还要高</li>
+</ol>
+<p><strong>计算特殊性值：</strong><br><code>!important</code> &gt; 内嵌 &gt; ID &gt; 类 &gt; 标签 | 伪类 | 属性选择 &gt; 伪对象 &gt; 继承 &gt; 通配符</p>
+<p><strong>权重、特殊性计算法：</strong></p>
+<ol>
+<li>内联样式 <code>style=&quot; &quot;</code>，权值 1，0，0，0</li>
+<li>ID 选择器 <code>#name</code>，权值 0，1，0，0</li>
+<li>类选择器 <code>.class</code>、伪类选择器<code>:hover</code>、属性选择器<code>[class=&quot; &quot;]</code>，权值 0，0，1，0</li>
+<li>元素选择器 <code>div</code>、伪元素选择器 <code>:nth-child(1)</code>，权值 0，0，0，1</li>
+</ol>
+<h2 id="7、为什么重置浏览器默认样式，如何重置默浏览器认样式？"><a href="#7、为什么重置浏览器默认样式，如何重置默浏览器认样式？" class="headerlink" title="7、为什么重置浏览器默认样式，如何重置默浏览器认样式？"></a>7、为什么重置浏览器默认样式，如何重置默浏览器认样式？</h2><p>每种浏览器都有一套默认的样式表，即 <code>user agent stylesheet</code>，网页在没有指定的样式时，按浏览器内置的样式表来渲染。这是合理的，像 word 中也有一些预留样式，可以让我们的排版更美观整齐。</p>
+<p>不同浏览器甚至同一浏览器不同版本的默认样式是不同的。但这样会有很多兼容问题。</p>
+<ol>
+<li>最简单的办法：（不推荐使用）<code>*{margin: 0;padding: 0;}</code>。</li>
+<li>使用 CSS Reset 可以将所有浏览器默认样式设置成一样。</li>
+<li><code>normalize</code>：也许有些 CSS Reset 过于简单粗暴，有点伤及无辜，<code>normalize</code> 是另一个选择。<code>bootstrap</code> 已经引用该 css 来重置浏览器默认样式，比普通的 CSS Reset 要精细一些，保留浏览器有用的默认样式，支持包括手机浏览器在内的超多浏览器，同时对 HTML5 元素、排版、列表、嵌入的内容、表单和表格都进行了一般化。</li>
+</ol>
+<p>天猫使用 CSS Reset 重置浏览器默认样式：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">charset</span> <span class="string">"gb2312"</span>;</span><br><span class="line"><span class="selector-tag">body</span>, <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">hr</span>, <span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">li</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">form</span>, <span class="selector-tag">fieldset</span>, <span class="selector-tag">legend</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">textarea</span>, <span class="selector-tag">th</span>, <span class="selector-tag">td</span> &#123;<span class="attribute">margin</span>: <span class="number">0</span>;<span class="attribute">padding</span>: <span class="number">0</span>&#125;</span><br><span class="line"><span class="selector-tag">body</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123;<span class="attribute">font</span>: <span class="number">12px</span> <span class="string">"microsoft yahei"</span>;<span class="attribute">line-height</span>: <span class="number">1.5</span>;<span class="attribute">-ms-overflow-style</span>: scrollbar&#125;</span><br><span class="line"><span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span> &#123;<span class="attribute">font-size</span>: <span class="number">100%</span>&#125;</span><br><span class="line"><span class="selector-tag">ul</span>, <span class="selector-tag">ol</span> &#123;<span class="attribute">list-style</span>: none&#125;</span><br><span class="line"><span class="selector-tag">a</span> &#123;<span class="attribute">text-decoration</span>: none;<span class="attribute">cursor</span>:pointer&#125;</span><br><span class="line"><span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;<span class="attribute">text-decoration</span>: underline&#125;</span><br><span class="line"><span class="selector-tag">img</span> &#123;<span class="attribute">border</span>: <span class="number">0</span>&#125;</span><br><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123;<span class="attribute">font-size</span>: <span class="number">100%</span>&#125;</span><br><span class="line"><span class="selector-tag">table</span> &#123;<span class="attribute">border-collapse</span>: collapse;<span class="attribute">border-spacing</span>: <span class="number">0</span>&#125;</span><br><span class="line"><span class="selector-class">.clear</span> &#123;<span class="attribute">clear</span>:both&#125;</span><br><span class="line"><span class="selector-class">.fr</span> &#123;<span class="attribute">float</span>:right&#125;</span><br><span class="line"><span class="selector-class">.fl</span> &#123;<span class="attribute">float</span>:left&#125;</span><br><span class="line"><span class="selector-class">.block</span> &#123;<span class="attribute">display</span>:block;<span class="attribute">text-indent</span>:-<span class="number">999em</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="8、-说说浮动元素以及引起的问题和解决办法"><a href="#8、-说说浮动元素以及引起的问题和解决办法" class="headerlink" title="8、 说说浮动元素以及引起的问题和解决办法?"></a>8、 说说浮动元素以及引起的问题和解决办法?</h2><p>浮动元素脱离文档流，不占据空间。浮动元素碰到包含它的边框或者浮动元素的边框停留。</p>
+<h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><p>（1）父元素的高度无法被撑开，影响与父元素同级的元素<br>（2）与浮动元素同级的非浮动元素会跟随其后<br>（3）若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构</p>
+<h3 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h3><p>(1) 结尾处加空<code>div</code>标签 <code>clear:both</code><br><strong>原理：</strong>添加一个空div，利用css提高的clear:both清除浮动，让父级div能自动获取到高度<br><strong>优点：</strong>简单、代码少、浏览器支持好、不容易出现怪问题<br><strong>缺点：</strong>不少初学者不理解原理；如果页面浮动布局多，就要增加很多空div，让人感觉很不好<br><strong>建议：</strong>不推荐使用，但此方法是以前主要使用的一种清除浮动方法</p>
+<p>(2) 父元素<code>div</code>定义 <code>overflow:hidden</code><br><strong>原理：</strong>必须定义<code>width</code>或<code>zoom:1</code>，同时不能定义<code>height</code>，使用<code>overflow:hidden</code>时，浏览器会自动检查浮动区域的高度<br><strong>优点：</strong>简单、代码少、浏览器支持好<br><strong>缺点：</strong>不能和<code>position</code>配合使用，因为超出的尺寸的会被隐藏。<br><strong>建议：</strong>只推荐没有使用<code>position</code>或对<code>overflow:hidden</code>理解比较深的朋友使用。</p>
+<p>(3) 父元素<code>div</code>定义 伪类<code>:after</code> 和 <code>zoom</code><br><strong>原理：</strong>IE8 以上和非 IE 浏览器才支持<code>:after</code>，原理和方法 2 有点类似，<code>zoom</code>(IE 专有属性)可解决 IE6, IE7 浮动问题<br><strong>优点：</strong>浏览器支持好、不容易出现怪问题（目前：大型网站都有使用，如：腾迅，网易，新浪等等）<br><strong>缺点：</strong>代码多、不少初学者不理解原理，要两句代码结合使用才能让主流浏览器都支持。<br><strong>建议：</strong>推荐使用，建议定义公共类，以减少 CSS 代码。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">margin-top</span>:<span class="number">10px</span>&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125;</span></span><br><span class="line"><span class="css"><span class="comment">/*清除浮动代码*/</span></span></span><br><span class="line"><span class="css"><span class="selector-class">.clearfloat</span><span class="selector-pseudo">:after</span>&#123;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">display</span><span class="selector-pseudo">:block</span>;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">clear</span><span class="selector-pseudo">:both</span>;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">content</span><span class="selector-pseudo">:""</span>;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">visibility</span><span class="selector-pseudo">:hidden</span>;</span></span><br><span class="line"><span class="css">     <span class="selector-tag">height</span><span class="selector-pseudo">:0</span></span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-class">.clearfloat</span>&#123; <span class="attribute">zoom</span>:<span class="number">1</span> &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1 clearfloat"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>Left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>Right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span></span><br><span class="line">     div2</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="9、-简要说一下CSS的元素分类。"><a href="#9、-简要说一下CSS的元素分类。" class="headerlink" title="9、 简要说一下CSS的元素分类。"></a>9、 简要说一下CSS的元素分类。</h2><ul>
+<li>块级元素：div, p, h1, form, ul, li;</li>
+<li>行内元素 : span, a, label, input, img, strong, em;</li>
+</ul>
+<p><code>block</code>，<code>inline</code>和<code>inlinke-block</code>比较：<br>• <strong>display:block</strong></p>
+<ol>
+<li><code>block</code>元素会独占一行，多个<code>block</code>元素会各自新起一行。默认情况下，<code>block</code>元素宽度自动填满其父元素宽度。</li>
+<li><code>block</code>元素可以设置<code>width</code>，<code>height</code>属性。块级元素即使设置了宽度,仍然是独占一行。</li>
+<li><code>block</code>元素可以设置<code>margin</code>和<code>padding</code>属性。</li>
+</ol>
+<p>• <strong>display:inline</strong></p>
+<ol>
+<li><code>inline</code>元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</li>
+<li><code>inline</code>元素设置<code>width</code>，<code>height</code>属性无效。</li>
+<li><code>inline</code>元素的<code>margin</code>和<code>padding</code>属性，水平方向的<code>padding-left</code>， <code>padding-right</code>，<code>margin-left</code>， <code>margin-right</code>都产生边距效果；但竖直方向的<code>padding-top</code>，<code>padding-bottom</code>， <code>margin-top</code>， <code>margin-bottom</code>不会产生边距效果。</li>
+</ol>
+<p>• <strong>display:inline-block</strong><br>简单来说就是将对象呈现为 <code>inline</code> 对象，但是对象的内容作为 <code>block</code> 对象呈现。之后的内联对象会被排列在同一行内。</p>
+<blockquote>
+<p>例如：<br>给一个 <code>link</code>（<code>a</code>元素）<code>inline-block</code>属性值，使其既具有<code>block</code>的宽度高度特性又具有 <code>inline</code> 的同行特性。</p>
+</blockquote>
+<p>补充说明：</p>
+<ol>
+<li>一般我们会用<code>display:block</code>，<code>display:inline</code>或者<code>display:inline-block</code>来调整元素的布局级别，其实<code>display</code>的参数远远不止这三种，仅仅是比较常用而已。</li>
+<li>IE（低版本 IE）本来是不支持<code>inline-block</code>的，所以在 IE 中对内联元素使用<code>display:inline-block</code>，理论上 IE 是不识别的，但使用<code>display:inline-block</code>在 IE 下会触发 layout，从而使内联元素拥有了<code>display:inline-block</code>属性的表象。</li>
+</ol>
+<h2 id="10、谈谈你对CSS中刻度的认识？"><a href="#10、谈谈你对CSS中刻度的认识？" class="headerlink" title="10、谈谈你对CSS中刻度的认识？"></a>10、谈谈你对CSS中刻度的认识？</h2><p><strong>在CSS中刻度是用于设置元素尺寸的单位。</strong></p>
+<ol>
+<li>特殊值 0 可以省略单位。例如：<code>margin : 0 px</code> 可以写成 <code>margin : 0</code></li>
+<li>一些属性可能允许有负长度值，或者有一定的范围限制。如果不支持负长度值，那应该变换到能够被支持的最近的一个长度值。</li>
+<li>长度单位包括：相对单位和绝对单位。</li>
+</ol>
+<p>相对长度单位有： em，rem， ex，ch，vw，vh，vmax，vmin<br>绝对长度单位有： cm，mm，q，in，pt，pc，px<br>绝对长度单位：1 in = 2.54 cm = 25.4 mm = 72 pt = 6 pc = 96 px</p>
+<h3 id="文本相对长度单位：em"><a href="#文本相对长度单位：em" class="headerlink" title="文本相对长度单位：em"></a>文本相对长度单位：em</h3><p>相对长度单位是相对于当前对象内文本的字体尺寸，如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。(相对父元素的字体大小倍数)<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123; <span class="attribute">font-size</span>: <span class="number">14px</span>; &#125;</span><br><span class="line"><span class="selector-tag">h1</span> &#123; <span class="attribute">font-size</span>: <span class="number">16px</span>; &#125;</span><br><span class="line"><span class="selector-class">.size1</span> <span class="selector-tag">p</span> &#123; <span class="attribute">font-size</span>: <span class="number">1em</span>; &#125;</span><br><span class="line"><span class="selector-class">.size2</span> <span class="selector-tag">p</span> &#123; <span class="attribute">font-size</span>: <span class="number">2em</span>; &#125;</span><br><span class="line"><span class="selector-class">.size3</span> <span class="selector-tag">p</span> &#123; <span class="attribute">font-size</span>: <span class="number">3em</span>; &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="文本相对长度单位：rem"><a href="#文本相对长度单位：rem" class="headerlink" title="文本相对长度单位：rem"></a>文本相对长度单位：rem</h3><p>rem 是CSS3新增的一个相对单位（root em，根em），相对于根元素(即 html 元素)<code>font-size</code>计算值的倍数。</p>
+<p>浏览器的默认字体大小为 16 像素，浏览器默认样式也称为 <code>user agent stylesheet</code>，就是所有浏览器内置的默认样式，多数是可以被修改的，但 chrome 不能直接修改，可以被用户样式覆盖。<br><strong>作用：</strong><br>利用 rem 可以实现简单的响应式布局，可以利用 html 元素中字体的大小与屏幕间的比值设置 <code>font-size</code> 的值实现当屏幕分辨率变化时让元素也变化，以前的天猫tmall就使用这种办法。</p>
+<h3 id="em与rem的重要区别："><a href="#em与rem的重要区别：" class="headerlink" title="em与rem的重要区别："></a>em与rem的重要区别：</h3><p>em 的计算规则是依赖父元素<br>rem 的计算规则是依赖根元素计算</p>
+<h2 id="11、对边距折叠的理解。"><a href="#11、对边距折叠的理解。" class="headerlink" title="11、对边距折叠的理解。"></a>11、对边距折叠的理解。</h2><p><strong>外边距折叠：</strong> 相邻的两个或多个外边距 <code>margin</code>在垂直方向会合并成一个外边距</p>
+<p><strong>相邻：</strong> 没有被非空内容、<code>padding</code>、<code>border</code> 或 <code>clear</code> 分隔开的<code>margin</code>特性。非空内容就是说这元素之间要么是兄弟关系或者父子关系。</p>
+<p><strong>垂直方向外边距合并计算:</strong></p>
+<ol>
+<li>参加折叠的<code>margin</code>都是正值：取其中 <code>margin</code> 较大的值为最终 <code>margin</code> 值。</li>
+<li>参与折叠的 <code>margin</code> 都是负值：取的是其中绝对值较大的，然后，从 0 位置，负向位移。</li>
+<li>参与折叠的 <code>margin</code> 中有正值，有负值：先取出负 <code>margin</code> 中绝对值中最大的，然后，和正 <code>margin</code> 值中最大的 <code>margin</code> 相加。</li>
+</ol>
+<h2 id="12、隐藏元素的方式有哪些？"><a href="#12、隐藏元素的方式有哪些？" class="headerlink" title="12、隐藏元素的方式有哪些？"></a>12、隐藏元素的方式有哪些？</h2><ul>
+<li>使用 CSS 的 <code>display : none</code>，不会占用原来的位置</li>
+<li>使用 CSS 的 <code>visibility : hidden</code>，会占用原来的位置</li>
+<li>使用 HTML5 中的新增属性<code>hidden=&quot;hidden&quot;</code>，不会占用原来的位置</li>
+</ul>
+<h2 id="13、对-IFC、BFC-的理解（是什么，如何产生，作用）"><a href="#13、对-IFC、BFC-的理解（是什么，如何产生，作用）" class="headerlink" title="13、对 IFC、BFC 的理解（是什么，如何产生，作用）"></a>13、对 IFC、BFC 的理解（是什么，如何产生，作用）</h2><p><strong>IFC：</strong>行内格式化上下文</p>
+<ol>
+<li>boxes（框）：水平排列，起点：包含块顶部</li>
+<li>水平方向：<code>margin</code>、<code>border</code>、<code>padding</code>保留</li>
+<li>垂直方向：以不同方式对齐<ul>
+<li>顶部 or 底部 对齐 </li>
+<li>基线对齐</li>
+</ul>
+</li>
+</ol>
+<p><strong>BFC：</strong>块级格式化上下文<br><strong>布局规则：</strong></p>
+<ol>
+<li>内部 box 垂直方向<ul>
+<li>一个一个放置</li>
+<li>距离由 <code>margin</code> 决定（同一 BFC 相邻 <code>margin</code> 重叠）</li>
+</ul>
+</li>
+<li>每个元素左外边缘<code>margin-left</code>与包含块的左边相接触，浮动元素也是如此</li>
+<li>不同的两个 BFC 区域无影响（甚至<code>float box</code>也不会有影响）<ul>
+<li>BFC 区域不会与 <code>float box</code>产生影响</li>
+<li>隔离独立容器，里面的子元素不会影响外界元素</li>
+</ul>
+</li>
+<li>计算 BFC 高度时，浮动元素（子元素）也参与计算</li>
+</ol>
+<p><strong>如何产生：</strong></p>
+<ol>
+<li>根元素</li>
+<li>浮动元素<code>float</code> 不为 <code>none</code></li>
+<li>绝对定位元素 <code>position</code> 为<code>absolute</code>或<code>fixed</code></li>
+<li>非块级元素但 <code>display</code> 的值为：<code>inline-block、table-cell、table-caption、flex、inline-flex</code></li>
+<li>块级元素有<code>overflow</code></li>
+</ol>
+<p><strong>作用：</strong></p>
+<ol>
+<li>清除浮动</li>
+<li>布局：自适应两栏布局</li>
+<li>防止垂直<code>margin</code>合并（也叫 <code>margin-collapse</code>外边距塌陷）</li>
+</ol>
+<h2 id="14、说说你对页面中使用定位-position-的理解？"><a href="#14、说说你对页面中使用定位-position-的理解？" class="headerlink" title="14、说说你对页面中使用定位 (position) 的理解？"></a>14、说说你对页面中使用定位 (position) 的理解？</h2><p>使用css布局position非常重要，语法如下：<br><code>position：static | relative | absolute | fixed | center | page | sticky</code><br><strong>默认值：</strong><code>static</code><br><strong>CSS3 新增：</strong><code>center</code>、<code>page</code>、<code>sticky</code></p>
+<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><p>可以认为静态的，默认元素都是静态的定位，对象遵循常规流。<br>此时 4 个定位偏移属性不会被应用，也就是使用<code>left</code>，<code>right</code>，<code>bottom</code>，<code>top</code>将不会生效。</p>
+<h3 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h3><p>相对定位，对象遵循常规流，并且参照自身在常规流中的位置通过<code>top</code>，<code>right</code>，<code>bottom</code>，<code>left</code>这 4 个定位偏移属性进行偏移时不会影响常规流中的任何元素。</p>
+<h3 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h3><ol>
+<li>绝对定位，对象脱离常规流，此时偏移属性参照的是离自身最近的定位祖先元素，如果没有定位的祖先元素，则一直回溯到<code>body</code>元素。盒子的偏移位置不影响常规流中的任何元素，其<code>margin</code>不与其他任何<code>margin</code>折叠。</li>
+<li>元素定位参考的是离自身最近的定位祖先元素，要满足两个条件，第一个是自己的祖先元素，可以是父元素也可以是父元素的父元素，一直找，如果没有则选择<code>body</code>为对照对象。第二个条件是要求祖先元素必须定位，通俗说就是<code>position</code>的属性值为非<code>static</code>都行。<h3 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h3>固定定位，与<code>absolute</code>一致，但偏移定位是以窗口为参考。当出现滚动条时，对象不会随着滚动。<h3 id="center"><a href="#center" class="headerlink" title="center"></a>center</h3>与<code>absolute</code>一致，但偏移定位是以定位祖先元素的中心点为参考。盒子在其包含容器垂直水平居中。（CSS3）<h3 id="page"><a href="#page" class="headerlink" title="page"></a>page</h3>与<code>absolute</code>一致。元素在分页媒体或者区域块内，元素的包含块始终是初始包含块，否则取决于每个<code>absolute</code>模式。（CSS3）<h3 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h3>对象在常态时遵循常规流。它就像是<code>relative</code>和<code>fixed</code>的合体，当在屏幕中时按常规流排版，当滚动到屏幕外时则表现如<code>fixed</code>。<br>该属性的表现是现实中你见到的吸附效果。（CSS3）</li>
+</ol>
+<h2 id="15、如何解决多个元素重叠问题？"><a href="#15、如何解决多个元素重叠问题？" class="headerlink" title="15、如何解决多个元素重叠问题？"></a>15、如何解决多个元素重叠问题？</h2><p>使用<code>z-index</code>属性可以设置元素的层叠顺序。<br><strong>z-index属性</strong><br>语法：<code>z-index: auto | &lt;integer&gt;</code><br><strong>默认值：</strong><code>auto</code><br>适用于：定位元素。即定义了<code>position</code>为非<code>static</code>的元素。<br><strong>取值：</strong></p>
+<ol>
+<li><code>auto</code>：元素在当前层叠上下文中的层叠级别是 0。元素不会创建新的局部层叠上下文，除非它是根元素。</li>
+<li><code>整数</code>： 用整数值来定义堆叠级别。可以为负值。<br> 说明：<ul>
+<li>检索或设置对象的层叠顺序。</li>
+<li>z-index用于确定元素在当前层叠上下文中的层叠级别，并确定该元素是否创建新的局部层叠上下文。</li>
+<li>当多个元素层叠在一起时，数字大者将显示在上面。</li>
+</ul>
+</li>
+</ol>
+<h2 id="16、页面布局的方式有哪些？"><a href="#16、页面布局的方式有哪些？" class="headerlink" title="16、页面布局的方式有哪些？"></a>16、页面布局的方式有哪些？</h2><p>方式：双飞翼、多栏、弹性、流式、瀑布流、响应式布局</p>
+<h3 id="（1）多栏布局"><a href="#（1）多栏布局" class="headerlink" title="（1）多栏布局"></a>（1）多栏布局</h3><ol>
+<li>栏栅格系统：就是利用浮动实现的多栏布局，在<code>bootstrap</code>中用的非常多。</li>
+<li>多列布局：栅格系统并没有真正实现分栏效果（如 word 中的分栏），CSS3 为了满足这个要求增加了多列布局模块</li>
+</ol>
+<h3 id="（2）弹性布局（Flexbox）"><a href="#（2）弹性布局（Flexbox）" class="headerlink" title="（2）弹性布局（Flexbox）"></a>（2）弹性布局（Flexbox）</h3><p>CSS3 引入了一种新的布局模式——Flexbox 布局（简称为 Flex），即伸缩布局盒模型（Flexible Box）。</p>
+<p><strong>目的：</strong><br>用来提供一个更加有效的方式制定、调整和分布一个容器里项目布局，即使它们的大小是未知或者动态的。</p>
+<p><strong>应用：</strong><br>Flexbox 布局常用于设计比较复杂的页面，可以轻松的实现屏幕和浏览器窗口大小发生变化时保持元素的相对位置和大小不变，同时减少了依赖于浮动布局实现元素位置的定义以及重置元素的大小。</p>
+<p>Flexbox 布局在定义伸缩项目大小时伸缩容器会预留一些可用空间，让你可以调节伸缩项目的相对大小和位置。</p>
+<blockquote>
+<p>例如，你可以确保伸缩容器中的多余空间平均分配多个伸缩项目，当然，如果你的伸缩容器没有足够大的空间放置伸缩项目时，浏览器会根据一定的比例减少伸缩项目的大小，使其不溢出伸缩容器。</p>
+</blockquote>
+<p>综合而言，Flexbox <strong>布局功能</strong>主要具有以下几点：</p>
+<ol>
+<li>屏幕和浏览器窗口大小发生改变也可以灵活调整布局；</li>
+<li>可以指定伸缩项目沿着主轴或侧轴按比例分配额外空间（伸缩容器额外空间），从而调整伸缩项目的大小；</li>
+<li>可以指定伸缩项目沿着主轴或侧轴将伸缩容器额外空间，分配到伸缩项目之前、之后或之间；</li>
+<li>可以指定如何将垂直于元素布局轴的额外空间分布到该元素的周围；</li>
+<li>可以控制元素在页面上的布局方向；</li>
+<li>可以按照不同于文档对象模型（DOM）所指定排序方式对屏幕上的元素重新排序。也就是说可以在浏览器渲染中不按照文档流先后顺序重排伸缩项目顺序。</li>
+</ol>
+<p>###（3） 流式布局（Fluid）<br><strong>固定</strong>布局和<strong>流式</strong>布局在网页设计中最常用的两种布局方式。</p>
+<p>固定布局能呈现网页的原始设计效果，流式布局则不受窗口宽度影响，流式布局使用百分比宽度来限定布局元素，这样可以根据客户端分辨率的大小来进行合理的显示。</p>
+<h3 id="（4）响应式布局"><a href="#（4）响应式布局" class="headerlink" title="（4）响应式布局"></a>（4）响应式布局</h3><p>响应式布局是 Ethan Marcotte 在2010年5月份提出的一个概念，就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。</p>
+<p>响应式布局可以为不同终端的用户提供更加舒适的界面和更好的用户体验，而且随着目前大屏幕移动设备的普及，用“大势所趋”来形容也不为过。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>面对不同分辨率设备灵活性强</li>
+<li>能够快捷解决多设备显示适应问题</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>兼容各种设备工作量大，效率低下</li>
+<li>代码累赘，会出现隐藏无用的元素，加载时间加长</li>
+<li>其实这是一种折中性质的设计解决方案，多方面因素影响而达不到最佳效果</li>
+<li>一定程度上改变了网站原有的布局结构，会出现用户混淆的情况</li>
+</ol>
+<h2 id="17、CSS居中（包括水平居中和垂直居中）。"><a href="#17、CSS居中（包括水平居中和垂直居中）。" class="headerlink" title="17、CSS居中（包括水平居中和垂直居中）。"></a>17、CSS居中（包括水平居中和垂直居中）。</h2><h3 id="内联元素居中方案"><a href="#内联元素居中方案" class="headerlink" title="内联元素居中方案"></a>内联元素居中方案</h3><h4 id="（1）-水平居中设置："><a href="#（1）-水平居中设置：" class="headerlink" title="（1） 水平居中设置："></a>（1） 水平居中设置：</h4><ul>
+<li>行内元素<ul>
+<li>设置 <code>text-align:center</code>；</li>
+</ul>
+</li>
+<li>Flex布局<ul>
+<li>设置 <code>display:flex; justify-content:center;</code> (灵活运用,支持Chroime，Firefox，IE9+)<h4 id="（2）-垂直居中设置："><a href="#（2）-垂直居中设置：" class="headerlink" title="（2） 垂直居中设置："></a>（2） 垂直居中设置：</h4></li>
+</ul>
+</li>
+<li>父元素高度确定的单行文本（内联元素）<ul>
+<li>设置 <code>height = line-height</code>；</li>
+</ul>
+</li>
+<li>父元素高度确定的多行文本（内联元素）<ol>
+<li>插入 <code>table</code> （插入方法和水平居中一样），然后设置 <code>vertical-align:middle</code>；</li>
+<li>先设置 <code>display:table-cell</code> 再设置 <code>vertical-align:middle</code>；</li>
+</ol>
+</li>
+</ul>
+<h3 id="块级元素居中方案"><a href="#块级元素居中方案" class="headerlink" title="块级元素居中方案"></a>块级元素居中方案</h3><h4 id="（1）水平居中设置："><a href="#（1）水平居中设置：" class="headerlink" title="（1）水平居中设置："></a>（1）水平居中设置：</h4><ul>
+<li>定宽块状元素<ul>
+<li>设置 左右 <code>margin</code> 值为 <code>auto</code>；</li>
+</ul>
+</li>
+<li>不定宽块状元素<ol>
+<li>在元素外加入 <code>table</code> 标签（完整的，包括 <code>table</code>、<code>tbody</code>、<code>tr</code>、<code>td</code>），该元素写在 <code>td</code> 内，然后设置 <code>margin</code> 的值为 <code>auto</code>；</li>
+<li>给该元素设置 <code>displa:inline; align-text:center;</code> 方法；</li>
+<li>父元素设置 <code>position:relative</code>，子元素设置 <code>position:absolute; left:50%; margin-left: - @width/2</code>；<h4 id="（2）垂直居中设置："><a href="#（2）垂直居中设置：" class="headerlink" title="（2）垂直居中设置："></a>（2）垂直居中设置：</h4></li>
+</ol>
+</li>
+<li>使用 <code>position:absolute（fixed）</code> ,设置 <code>left</code>、<code>top</code>、<code>margin-left</code>、<code>margin-top</code> 的属性;</li>
+<li>利用 <code>position:fixed（absolute）</code>属性，<code>margin:auto</code> 这个必须不要忘记了;</li>
+<li>利用 <code>display:table-cell</code> 属性使内容垂直居中;</li>
+<li>使用 css3 的新属性 <code>transform:translate(x,y)</code> 属性;</li>
+<li>使用 <code>:before</code> 元素;</li>
+</ul>
+<h2 id="18、CSS3-的新特性。"><a href="#18、CSS3-的新特性。" class="headerlink" title="18、CSS3 的新特性。"></a>18、CSS3 的新特性。</h2><ul>
+<li>CSS3的选择器<ul>
+<li>1）E:last-child 匹配父元素的最后一个子元素E。</li>
+<li>2）E:nth-child(n)匹配父元素的第n个子元素E。</li>
+<li>3）E:nth-last-child(n) CSS3 匹配父元素的倒数第n个子元素E。</li>
+</ul>
+</li>
+<li>@Font-face 特性<ul>
+<li>Font-face 可以用来加载字体样式，而且它还能够加载服务器端的字体文件，让客户端显示客户端所没有安装的字体。.</li>
+</ul>
+</li>
+<li>圆角、 阴影<ul>
+<li>border-radius: 15px;</li>
+<li>box-shadow:10px</li>
+</ul>
+</li>
+<li>多列布局 （multi-column layout）<ul>
+<li>兼容性不好，还不够成熟。还不能用在实际项目中。</li>
+</ul>
+</li>
+</ul>
+<h2 id="19、position跟display、margin-collapse、overflow、float这些特性相互叠加会产生的效果。"><a href="#19、position跟display、margin-collapse、overflow、float这些特性相互叠加会产生的效果。" class="headerlink" title="19、position跟display、margin collapse、overflow、float这些特性相互叠加会产生的效果。"></a>19、position跟display、margin collapse、overflow、float这些特性相互叠加会产生的效果。</h2><h3 id="1、’display’、’position’-和-‘float’-的相互关系"><a href="#1、’display’、’position’-和-‘float’-的相互关系" class="headerlink" title="1、’display’、’position’ 和 ‘float’ 的相互关系"></a>1、’display’、’position’ 和 ‘float’ 的相互关系</h3><ol>
+<li><p>‘display’ 的值为 ‘none’</p>
+<ul>
+<li>如果 ‘display’ 的值为 ‘none’，那么 ‘position’ 和 ‘float’ 不起作用。在这种情况下，元素不产生框。因此浮动和定位无效。</li>
+</ul>
+</li>
+<li><p>‘position’ 的值是 ‘absolute’ 或 ‘fixed’</p>
+<ul>
+<li>如果 ‘position’ 的值是 ‘absolute’ 或 ‘fixed’，框就是绝对定位的，’float’ 计算后的值应该是 ‘none’，并且，’display’ 会被按照上表设置。 框的位置将由 ‘top’，’right’，’bottom’ 和 ‘left’ 属性和该框的包含块确定。<ul>
+<li>也就是说，当元素是绝对定位时，浮动失效，’display’ 会被按规则重置。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>‘float’ 的值不是 “none”</p>
+<ul>
+<li>按照规则，span 是行内元素，因此不能够设置其宽度和高度。但是浮动后，’display’ 值按照转换对应表设置后，成为块级元素</li>
+</ul>
+</li>
+<li><p>元素是根元素</p>
+<ul>
+<li>如果元素是根元素，’display’ 的值按照转换对应表设置。</li>
+</ul>
+</li>
+<li><p>否则，应用指定的 ‘display’ 特性值。</p>
+</li>
+</ol>
+<h3 id="2、’position’-跟-‘display’、’overflow’、’float’下的-‘margin-collapse’。"><a href="#2、’position’-跟-‘display’、’overflow’、’float’下的-‘margin-collapse’。" class="headerlink" title="2、’position’ 跟 ‘display’、’overflow’、’float’下的 ‘margin collapse’。"></a>2、’position’ 跟 ‘display’、’overflow’、’float’下的 ‘margin collapse’。</h3><p>margin collapse：即外边距折叠，指的是毗邻的两个或多个外边距 (margin) 会合并成一个外边距。<br>• 这两个或多个外边距没有被 非空内容、padding、border 或 clear 分隔开。<br>• 这些 margin 都处于普通流中。</p>
+<ul>
+<li>两个或多个毗邻的普通流中的块元素垂直方向上的 margin 会折叠。</li>
+<li>浮动元素、inline-block 元素、绝对定位元素的 margin 不会和垂直方向上其他元素的 margin 折叠。</li>
+<li>创建了块级格式化上下文的元素，不和它的子元素发生 margin 折叠。</li>
+</ul>
+<h2 id="20、-before-和-after中双冒号和单冒号-有什么区别？解释一下这2个伪元素的作用。"><a href="#20、-before-和-after中双冒号和单冒号-有什么区别？解释一下这2个伪元素的作用。" class="headerlink" title="20、::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。"></a>20、::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。</h2><p><strong>单冒号（ <code>:</code> ）</strong>用于 CSS3 伪类，<strong>双冒号（ <code>::</code> ）</strong>用于 CSS3 伪元素。（伪元素由双冒号和伪元素名称组成）</p>
+<p>双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法，比如:<code>:first-line</code>、<code>:first-letter</code>、<code>:before</code>、<code>:after</code>等，</p>
+<p>而新的在 CSS3 中引入的伪元素则不允许再支持旧的单冒号的写法。<br>想让插入的内容出现在其它内容前，使用<code>::before</code>，否者，使用<code>::after</code>；<br>在代码顺序上，<code>::after</code>生成的内容也比<code>::before</code>生成的内容靠后。<br>如果按堆栈视角，<code>::after</code>生成的内容会在<code>::before</code>生成的内容之上。</p>
+	  
 
 	  <div>
   		<center>
